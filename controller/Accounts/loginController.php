@@ -1,5 +1,5 @@
 <?php
-    include '../../model/loginModel.php';
+    require_once '../../model/loginModel.php';
 
     $login = new Login();
     if(isset($_POST['login']))
@@ -17,33 +17,18 @@
         }
     }
 
-    if(isset($_POST['loginAdmin']))
-    {
-        $user = htmlentities($_POST['username']);
-        $pass = htmlentities($_POST['password']);
-        $data = array($user,$pass);
-        $ok=$login->Admin($data);
-        if($ok)
-        {
-            header("location:../../model/loginModel.php?id=".$_SESSION['']."&?info=".$_SESSION['']);
-        }
-        else{
-            header("location:../../superAdmin/index.php");
-        }
-    }
-
     if(isset($_POST['loginCashier']))
     {
         $user = htmlentities($_POST['username']);
         $pass = htmlentities($_POST['password']);
         $data = array($user,$pass);
-        $ok=$login->Cahier($data);
+        $ok=$login->Cashier($data);
         if($ok)
         {
-            header("location:../../model/loginModel.php?id=".$_SESSION['']."&?info=".$_SESSION['']);
+            header("location:../../view/Cashier/index.php?id=".$_SESSION['cashier_id']."&?info=".$_SESSION['cashier']);
         }
         else{
-            header("location:../../superAdmin/index.php");
+            header("location:../../index.php");
         }
     }
 
@@ -55,10 +40,10 @@
         $ok=$login->Dealer($data);
         if($ok)
         {
-            header("location:../../model/loginModel.php?id=".$_SESSION['']."&?info=".$_SESSION['']);
+            header("location:../../view/dealer/index.php?id=".$_SESSION['dealer_id']."&?info=".$_SESSION['dealer']);
         }
         else{
-            header("location:../../superAdmin/index.php");
+            header("location:../../index.php");
         }
     }
 
@@ -70,10 +55,12 @@
         $ok=$login->Clerk($data);
         if($ok)
         {
-            header("location:../../model/loginModel.php?id=".$_SESSION['']."&?info=".$_SESSION['']);
+            header("location:../../view/clerk/index.php?id=".$_SESSION['clerk_id']."&?info=".$_SESSION['clerk']);
         }
         else{
-            header("location:../../superAdmin/index.php");
+            header("location:../../index.php");
         }
     }
+
+   
 ?>

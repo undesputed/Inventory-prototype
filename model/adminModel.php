@@ -1,42 +1,42 @@
 <?php
-    require 'db/DBHelper.php';
+    require_once 'db/dbhelper.php';
 
     Class Admin extends DBHelper
     {
-        private $table = 'admin';
+        private $table = 'superadmin';
         private $fields = array(
-            'admin_lastname',
-            'ádmin_firstname',
-            'admin_mi',
-            'admin_username',
-            'admin_password'
+            'super_lastname',
+            'super_firstname',
+            'super_mi',
+            'super_username',
+            'super_password'
         );
 
         //constructor
-    function __construct(){
-        return DBHelper::__construct();
-    }
-    // Create
-    function addAdmin($data){
-        return DBHelper::insertRecord($data,$this->fields,$this->table); 
-    }
-    // Retreive
-    function getAllAdmin(){
-        return DBHelper::getAllRecord($this->table);
-    }
-    function getAdminById($ref_id){
-        return DBHelper::getRecordById($this->table,'admin_id',$ref_id);
-    }
-    function getAdminSuper($ref_id){
-        return DBHelper::getRecord($this->table,'admin_id',$ref_id);
-    }
-    // Update
-    function updateAdmin($data,$ref_id){
-        return DBHelper::updateRecord($this->table,$this->fields,$data,'admin_id',$ref_id); 
-    }
-    // Delete
-    function deleteAdmin($ref_id){
-            return DBHelper::deleteRecord($this->table,'admin_id',$ref_id);
-    }
+        function __construct(){
+            return DBHelper::__construct();
+        }
+        // Create
+        function addSuper($data){
+            return DBHelper::insertRecord($data,$this->fields,$this->table); 
+        }
+        // Retreive
+        function getAllSuper(){
+            return DBHelper::getAllRecord($this->table);
+        }
+        function getSuperById($ref_id){
+            return DBHelper::getRecordById($this->table,'Super_id',$ref_id);
+        }
+        function getSuper($ref_id){
+            return DBHelper::getRecord($this->table,'Super_id',$ref_id);
+        }
+        // Update
+        function updateSuper($data,$ref_id){
+            return DBHelper::updateRecord($this->table,$this->fields,$data,'super_id',$ref_id); 
+        }
+        // Delete
+        function deleteSuper($ref_id){
+                return DBHelper::deleteRecord($this->table,'Super_id',$ref_id);
+        }
     }
 ?>

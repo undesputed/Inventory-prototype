@@ -60,7 +60,7 @@ function __construct(){
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if($stmt->rowCount() > 0)
         {
-            $_SESSION['cashier'] = $row['cashier_lastname'].','.$row['cashier_lastname'];
+            $_SESSION['cashier'] = $row['cashier_lastname'].','.$row['cashier_firstname'];
             $_SESSION['cashier_id'] = $row['cashier_id'];
             $flag = true;
         }
@@ -82,6 +82,25 @@ function __construct(){
         {
             $_SESSION['dealer'] = $row['dealer_lastname'].','.$row['dealer_firstname'];
             $_SESSION['dealer_id'] = $row['dealer_id'];
+            $flag = true;
+        }
+        else{
+            echo "<script> alert('Error'); </script>";
+        }
+        $this->conn = null;
+        return $flag;   
+    }
+
+    function logginClerk($data){
+        $flag=false;
+        $sql = "SELECT * FROM CLERK WHERE CLERK_USERNAME = ? AND CLERK_PASSWORD = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($data);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($stmt->rowCount() > 0)
+        {
+            $_SESSION['clerk'] = $row['clerk_lastname'].','.$row['clerk_firstname'];
+            $_SESSION['clerk_id'] = $row['clerk_id'];
             $flag = true;
         }
         else{
